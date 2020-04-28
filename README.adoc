@@ -1,0 +1,28 @@
+= Port of QingdaoU Online Judge for the Rust language
+
+The original judge is available https://github.com/QingdaoU/OnlineJudge[here].
+
+Build::
+----
+./build.sh
+----
+Launch::
+----
+docker-compose up -d
+----
+Stop::
+----
+docker-compose down
+----
+
+[NOTE]
+====
+* Logs are available in `data/judge_server`.
+* If you change the file `languages.py`, you have to https://docs.onlinejudge.me/#/onlinejudge/guide/update_compile_options[update the cache].
+* The C language support has to be embedded, even if it does not work as is.
+* When updating:
+** remove `data` (make sure you do not need your data any more);
+** update the 4 Git repositories and the `docker-compose.yml` simultaneously;
+** update the `dist` generated from `OnlineJudgeFE` (see the original Dockerfile in OnlineJudge, and mine).
+====
+
