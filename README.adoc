@@ -2,10 +2,6 @@
 
 The original judge is available https://github.com/QingdaoU/OnlineJudge[here].
 
-Build::
-----
-./build.sh
-----
 Launch::
 ----
 docker-compose up -d
@@ -18,11 +14,12 @@ docker-compose down
 [NOTE]
 ====
 * Logs are available in `data/judge_server`.
-* If you change the file `languages.py`, you have to https://docs.onlinejudge.me/#/onlinejudge/guide/update_compile_options[update the cache].
 * The C language support has to be embedded, even if it does not work as is.
-* When updating:
+* If you want to update this repository yourself:
 ** remove `data` (make sure you do not need your data any more);
-** update the 4 Git repositories and the `docker-compose.yml` simultaneously;
-** update the `dist` generated from `OnlineJudgeFE` (see the original Dockerfile in OnlineJudge, and mine).
+** update the 4 Git repositories (`Judger`, `JudgeServer`, `OnlineJudge`, `OnlineJudgeDeploy`, but not `OnlineJudgeFE`) and the `docker-compose.yml` simultaneously:
+*** Whenever you change the file `OnlineJudge/judge/languages.py`, you have to https://docs.onlinejudge.me/#/onlinejudge/guide/update_compile_options[update the cache] (or to remove the `data` directory).
+*** check `JudgeServer/Dockerfile` and `OnlineJudge/Dockerfile` (and target the right Git clones);
+*** for `OnlineJudgeFE`, you can target a specific release in the Dockerfile of `OnlineJudge`, the release number appearing in the `url` field of a release found at https://api.github.com/repos/QingdaoU/OnlineJudgeFE/releases, and the latest release being number 0.
 ====
 
