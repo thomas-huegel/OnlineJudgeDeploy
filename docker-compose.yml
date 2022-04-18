@@ -4,14 +4,14 @@ services:
   oj-redis:
     image: redis:4.0.14-alpine3.11
     container_name: oj-redis
-    restart: always
+    restart: unless-stopped
     volumes:
       - ./data/redis:/data
   
   oj-postgres:
     image: postgres:10.16-alpine
     container_name: oj-postgres
-    restart: always
+    restart: unless-stopped
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
     environment:
@@ -22,7 +22,7 @@ services:
   judge-server:
     image: thomashuegel/qingdaou_judge_server:1.0.0-Rust
     container_name: judge-server
-    restart: always
+    restart: unless-stopped
     read_only: true
     cap_drop:
       - SETPCAP
@@ -46,7 +46,7 @@ services:
   oj-backend:
     image: thomashuegel/qingdaou_oj_backend:1.0.0-Rust
     container_name: oj-backend
-    restart: always
+    restart: unless-stopped
     depends_on:
       - oj-redis
       - oj-postgres
