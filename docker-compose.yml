@@ -20,7 +20,7 @@ services:
       - POSTGRES_PASSWORD=onlinejudge
 
   judge-server:
-    image: thomashuegel/judge_server:1.0.0
+    image: thomashuegel/judge_server:1.0.1
     container_name: judge-server
     restart: always
     read_only: true
